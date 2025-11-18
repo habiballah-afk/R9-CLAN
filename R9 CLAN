@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The R9 - أبطال تونس غير المهزومين</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --black: #000000;
+            --purple: #9d4edd;
+            --white: #ffffff;
+            --dark-purple: #7b2cbf;
+            --light-purple: #c77dff;
+            --gradient: linear-gradient(135deg, var(--purple) 0%, var(--dark-purple) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* تأثيرات التصميم */
+        .glass-effect {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .purple-glow {
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(157, 78, 221, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+        }
+
+        /* شريط التقدم */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* التصميم العام */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الهيدر */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--purple);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--purple);
+            text-shadow: 0 0 15px var(--purple);
+        }
+
+        .logo-badge {
+            background: var(--purple);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--purple);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* قائمة الجوال */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1002;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 2000;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--purple);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--purple);
+            padding-right: 10px;
+        }
+
+        /* البانر الرئيسي */
+        .hero {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.05) 0%, transparent 50%),
+                var(--black);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 65%, rgba(157, 78, 221, 0.03) 75%, transparent 85%),
+                linear-gradient(-45deg, transparent 65%, rgba(157, 78, 221, 0.03) 75%, transparent 85%);
+        }
+
+        .clan-slogan {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 9rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(157, 78, 221, 0.15);
+            z-index: 1;
+            opacity: 0.4;
+            white-space: nowrap;
+            letter-spacing: 15px;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--purple);
+            text-shadow: 0 0 20px var(--purple);
+            letter-spacing: 3px;
+            font-weight: 800;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            color: var(--white);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            min-width: 180px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--purple);
+            display: block;
+            text-shadow: 0 0 15px var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.6);
+        }
+
+        /* الأقسام العامة */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple), transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            margin-bottom: 4rem;
+            color: var(--purple);
+            position: relative;
+            text-shadow: 0 0 20px var(--purple);
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: var(--purple);
+            box-shadow: 0 0 20px var(--purple);
+        }
+
+        /* قسم عن الكلان */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid var(--purple);
+            line-height: 1.8;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .philosophy-item {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .philosophy-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .philosophy-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(157, 78, 221, 0.3);
+        }
+
+        .philosophy-item h3 {
+            color: var(--purple);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .philosophy-item p {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* قسم الفريق */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-member {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-member:hover {
+            transform: translateY(-15px);
+            border-color: var(--purple);
+            box-shadow: 0 25px 50px rgba(157, 78, 221, 0.4);
+        }
+
+        .member-header {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--dark-purple) 100%);
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .member-header h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .member-role {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        .member-body {
+            padding: 2.5rem;
+        }
+
+        .member-body p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .member-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .member-stats div {
+            text-align: center;
+            font-weight: 700;
+            color: var(--purple);
+            font-size: 1.1rem;
+        }
+
+        /* قسم الأعضاء المتميزين */
+        .elite-members {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 4rem;
+            margin-top: 4rem;
+            border: 2px solid var(--purple);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .elite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .elite-member {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elite-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .elite-member:hover::before {
+            opacity: 1;
+        }
+
+        .elite-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.4);
+        }
+
+        .elite-member h4 {
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .member-specialty {
+            color: var(--light-purple);
+            font-weight: 700;
+            margin: 1.5rem 0;
+            display: block;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--light-purple);
+        }
+
+        .elite-member p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--white);
+        }
+
+        /* قسم الاستراتيجيات */
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .strategy-card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 50px;
+            height: 50px;
+            background: var(--purple);
+            border-radius: 50%;
+            opacity: 0.2;
+            transition: all 0.5s ease;
+        }
+
+        .strategy-card:hover::before {
+            transform: scale(15);
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(157, 78, 221, 0.4);
+        }
+
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .strategy-header h3 {
+            font-size: 2rem;
+            color: var(--purple);
+            font-weight: 700;
+        }
+
+        .member-role {
+            background: var(--purple);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .strategy-weapons {
+            display: flex;
+            gap: 12px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .weapon-tag {
+            background: var(--purple);
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            transition: all 0.3s;
+        }
+
+        .weapon-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.8);
+        }
+
+        .strategy-card ul {
+            list-style: none;
+            padding-right: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .strategy-card li {
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-right: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--white);
+        }
+
+        .strategy-card li::before {
+            content: '▸';
+            position: absolute;
+            right: 0;
+            color: var(--purple);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* قسم الإنجازات */
+        .achievements {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-purple) 100%);
+            position: relative;
+        }
+
+        .achievements::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .achievement-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .achievement-item {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .achievement-item:hover::before {
+            opacity: 1;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.4);
+        }
+
+        .achievement-item h3 {
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .achievement-item p {
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* قسم قوانين الكلان */
+        .rules-section {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 4rem;
+            margin: 4rem 0;
+            border: 2px solid var(--purple);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .rule-item {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .rule-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .rule-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .rule-item h4 {
+            font-size: 1.6rem;
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .rule-item ul {
+            list-style: none;
+            padding-right: 1rem;
+        }
+
+        .rule-item li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-right: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .rule-item li:hover {
+            color: var(--light-purple);
+            transform: translateX(-5px);
+        }
+
+        .rule-item li::before {
+            content: '⚡';
+            position: absolute;
+            right: 0;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        /* قسم الانضمام */
+        .join-section {
+            background: linear-gradient(135deg, var(--black) 0%, var(--purple) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .join-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 65%, rgba(255,255,255,0.05) 75%, transparent 85%),
+                linear-gradient(-45deg, transparent 65%, rgba(255,255,255,0.05) 75%, transparent 85%);
+            pointer-events: none;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .requirement-item {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--purple);
+            transition: all 0.3s;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .requirement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .requirement-item:hover::before {
+            opacity: 1;
+        }
+
+        .requirement-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.4);
+        }
+
+        .requirement-item h3 {
+            font-size: 1.6rem;
+            color: var(--purple);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .req-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--purple);
+            display: block;
+            margin: 2rem 0;
+            text-shadow: 0 0 15px var(--purple);
+        }
+
+        .requirement-item p {
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* نموذج التقديم */
+        .application-form {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 4rem;
+            border-radius: 25px;
+            margin-top: 4rem;
+            border: 2px solid var(--purple);
+            backdrop-filter: blur(15px);
+            text-align: right;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--purple);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+            border: 2px solid var(--purple);
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--light-purple);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .btn-join {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--dark-purple) 100%);
+            color: var(--white);
+            padding: 20px 50px;
+            border: none;
+            border-radius: 35px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.5);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-join::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .btn-join:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-join:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(157, 78, 221, 0.7);
+        }
+
+        /* الفوتر */
+        footer {
+            background: var(--black);
+            padding: 5rem 0;
+            text-align: center;
+            border-top: 3px solid var(--purple);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple), transparent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .social-link {
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s;
+            text-shadow: 0 0 15px var(--purple);
+            position: relative;
+            overflow: hidden;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-link:hover::before {
+            transform: scale(1);
+        }
+
+        .social-link:hover {
+            color: var(--white);
+            transform: translateY(-8px) scale(1.2);
+        }
+
+        /* التحميل */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(157, 78, 221, 0.3);
+            border-top: 5px solid var(--purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 25px;
+            }
+            
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+            
+            .clan-slogan {
+                font-size: 7rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .clan-slogan {
+                font-size: 5.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .strategies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 2rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 2rem;
+            }
+            
+            .clan-slogan {
+                font-size: 4rem;
+                letter-spacing: 8px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+                margin: 2rem 0;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+                min-width: auto;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .about-text {
+                padding: 2rem;
+            }
+            
+            .team-grid,
+            .elite-grid,
+            .rules-grid,
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .elite-members,
+            .rules-section,
+            .application-form {
+                padding: 2.5rem;
+            }
+            
+            .member-header,
+            .member-body {
+                padding: 2rem;
+            }
+            
+            .strategy-card {
+                padding: 2rem;
+            }
+            
+            .achievement-item {
+                padding: 2rem 1.5rem;
+            }
+            
+            .requirement-item {
+                padding: 2rem 1.5rem;
+            }
+            
+            .social-links {
+                gap: 2rem;
+            }
+            
+            .btn-join {
+                padding: 16px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .clan-slogan {
+                font-size: 3rem;
+                letter-spacing: 5px;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .logo-badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .about-text,
+            .elite-members,
+            .rules-section,
+            .application-form {
+                padding: 1.5rem;
+            }
+            
+            .philosophy-item,
+            .elite-member,
+            .rule-item {
+                padding: 2rem 1.5rem;
+            }
+            
+            .member-header h3 {
+                font-size: 1.7rem;
+            }
+            
+            .member-body p,
+            .elite-member p,
+            .rule-item li {
+                font-size: 1rem;
+            }
+            
+            .form-control {
+                padding: 14px;
+                font-size: 1rem;
+            }
+            
+            .btn-join {
+                padding: 14px 35px;
+                font-size: 1.1rem;
+            }
+            
+            footer {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .clan-slogan {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- شاشة التحميل -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- الهيدر -->
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-text">THE R9</div>
+                <div class="logo-badge">TOP 54</div>
+            </div>
+            
+            <!-- زر قائمة الجوال -->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">عن الكلان</a></li>
+                    <li><a href="#team">الفريق</a></li>
+                    <li><a href="#elite">النخبة</a></li>
+                    <li><a href="#strategies">الاستراتيجيات</a></li>
+                    <li><a href="#rules">قوانين الكلان</a></li>
+                    <li><a href="#achievements">الإنجازات</a></li>
+                    <li><a href="#join">انضم إلينا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قائمة الجوال -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-text">THE R9</div>
+                <div class="logo-badge">TOP 54</div>
+            </div>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عن الكلان</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#elite">النخبة</a></li>
+                <li><a href="#strategies">الاستراتيجيات</a></li>
+                <li><a href="#rules">قوانين الكلان</a></li>
+                <li><a href="#achievements">الإنجازات</a></li>
+                <li><a href="#join">انضم إلينا</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- البانر الرئيسي -->
+    <section id="home" class="hero">
+        <div class="clan-slogan">R9 IS HERE</div>
+        <div class="container hero-content">
+            <h1 class="animate__animated animate__fadeInDown">THE R9</h1>
+            <div class="subtitle animate__animated animate__fadeInUp">أهلاً بك في بيت المحترفين… المكان اللي يصنع الأبطال، ويحوّل اللاعب العادي لأسطورة. كلان The R9 مو مجرد فريق… هو عقلية، هوية، ومستوى جديد من اللعب الحقيقي.</div>
+            <div class="stats">
+                <div class="stat-item animate__animated animate__fadeInLeft">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">عضو نخبة</span>
+                </div>
+                <div class="stat-item animate__animated animate__fadeInUp">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">معدل الانتصارات</span>
+                </div>
+                <div class="stat-item animate__animated animate__fadeInRight">
+                    <span class="stat-number">TOP 54</span>
+                    <span class="stat-label">ترتيب تونس</span>
+                </div>
+            </div>
+            <a href="#join" class="btn-join animate__animated animate__pulse animate__infinite">انضم إلى الأسطورة</a>
+        </div>
+    </section>
+
+    <!-- قسم عن الكلان -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">عن أسطورة THE R9</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>كلان The R9 هو واحد من أقوى الفرق العربية في Free Fire، معروفين بالانضباط، الأسلوب الاحترافي، والتكتيكات اللي تغيّر مجرى الرومات. أسلوب لعبنا يعتمد على الذكاء قبل القوة، وعلى الرصاصة المضمونة قبل الفايت الفوضوي.</p>
+                    <p style="margin-top: 2rem; font-weight: bold; color: var(--purple); font-size: 1.4rem;">⭐ دايمًا نقول: "اللعب مو سرعة… اللعب ذكاء."</p>
+                    <p style="margin-top: 1.5rem;">"نحن أساطيل ما نعرف الخوف… ظهرنا في الساحة بقوة وأثبتنا أننا من أفضل الكلانات في تونس. كل معركة نخوضها، كل بطولة ندخلها، نخرج منها أقوى وأكثر تماسكاً."</p>
+                </div>
+                <div class="philosophy-grid">
+                    <div class="philosophy-item">
+                        <h3>التميز</h3>
+                        <p>لا نقبل إلا بالأفضل في كل شيء</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h3>العمل الجماعي</h3>
+                        <p>الفريق فوق الفرد دائماً</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h3>الالتزام</h3>
+                        <p>النجاح قرار والتفوق اختيار</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الفريق -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title">زعماء الكلان</h2>
+            <div class="team-grid">
+                <!-- Matrix -->
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3>Matrix</h3>
+                        <div class="member-role">المؤسس والرئيس التنفيذي</div>
+                    </div>
+                    <div class="member-body">
+                        <p>العقل المدبر وراء نجاح The R9، الاستراتيجي الرئيسي ومسؤول التخطيط الشامل للكلان. Matrix ليس مجرد قائد، بل هو الرؤية التي تقود الكلان نحو التميز. تحت قيادته، تحول The R9 من مجرد كلان عادي إلى أسطورة في عالم Free Fire.</p>
+                        <div class="member-stats">
+                            <div>التأسيس</div>
+                            <div>Top 54</div>
+                            <div>100% Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ryuma -->
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3>Ryuma</h3>
+                        <div class="member-role">نائب الرئيس والمدير التنفيذي</div>
+                    </div>
+                    <div class="member-body">
+                        <p>الذراع الأيمن لـ Matrix والمدير التنفيذي للكلان، يتحمل المسؤولية الكاملة أثناء غياب الرئيس. Ryuma يتمتع بخبرة واسعة في إدارة الفرق وتنظيم العمليات. وجوده يضمن استمرارية التميز والانضباط في الكلان.</p>
+                        <div class="member-stats">
+                            <div>الإدارة</div>
+                            <div>التخطيط</div>
+                            <div>التنفيذ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zirda -->
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3>Zirda</h3>
+                        <div class="member-role">زيردة شغب - قائد الهجوم</div>
+                    </div>
+                    <div class="member-body">
+                        <p>قائد هجومي بمعنى الكلمة… ما يعرف يلعب من بعيد. أسلوبه واضح: يدخل – يكسر – يفوز. قوته في الضغط المستمر والهجمات الأمامية الجريئة. Zirda هو الشرارة التي تشعل المعارك وتفرض سيطرة The R9 على الساحة.</p>
+                        <div class="member-stats">
+                            <div>الهجوم</div>
+                            <div>الضغط</div>
+                            <div>القوة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zodiac -->
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3>Zodiac</h3>
+                        <div class="member-role">زودياك - فزعة الكلان</div>
+                    </div>
+                    <div class="member-body">
+                        <p>قريب أو بعيد، Esport أو روم… زودياك جاهز. يضرب أحمر بثبات، ويعرف يقترب من السكواد بـ Timing مثالي. خبرته الطويلة وتوقيته الدقيق يجعله العمود الفقري للكلان في أصعب المواقف.</p>
+                        <div class="member-stats">
+                            <div>الحضور</div>
+                            <div>التوقيت</div>
+                            <div>الدعم</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Winter -->
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3>Winter</h3>
+                        <div class="member-role">وينتر - القاتل البارد</div>
+                    </div>
+                    <div class="member-body">
+                        <p>أقوى لاعب حاليًا في الكلان بلا منافسة. أحمر؟ عنده. أصفر؟ عنده. فايت نظيف؟ مستعد. سلاحه المفضل: UMP. Winter يتمتع ببرودة أعصاب نادرة ودقة لا تُصدق. من قوة لعبه، الكثير اتهموه بالغش… لكن الحقيقة أنه ببساطة أقوى من أن يستوعبه البعض.</p>
+                        <div class="member-stats">
+                            <div>البرودة</div>
+                            <div>الدقة</div>
+                            <div>UMP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم الأعضاء المتميزين -->
+            <div id="elite" class="elite-members">
+                <h3 class="section-title" style="font-size: 2.5rem;">النخبة المتميزة</h3>
+                <div class="elite-grid">
+                    <!-- PTTITANIK -->
+                    <div class="elite-member">
+                        <h4>PTTITANIK</h4>
+                        <span class="member-specialty">ملك الون شوت - The Silent Finisher</span>
+                        <p>لاعب متخصص في الون شوت بدون ما يغلط… ما يعرف حاجة اسمها "أصفر" أو "جسد". كل طلقة عنده = رأس. تركيزه عالي، أعصابه باردة، ودائمًا يحسم الفايت بضربة واحدة.</p>
+                    </div>
+
+                    <!-- LION -->
+                    <div class="elite-member">
+                        <h4>LION</h4>
+                        <span class="member-specialty">صخرة الكلان - The Immovable Wall</span>
+                        <p>أقدم وأقوى لاعبين The R9… ما يفرق معاه إذا كان الخصم قوي أو عددهم كبير. يلعب أخضر وأصفر… المهم يربح. متخصص في الكوفر وتثبيت السكواد، يعرف متى يتقدم ومتى يغطي الفريق.</p>
+                    </div>
+
+                    <!-- ZeedeXx -->
+                    <div class="elite-member">
+                        <h4>ZeedeXx</h4>
+                        <span class="member-specialty">المفاجأة الجديدة - The Tactical Beast</span>
+                        <p>دخل للكلان جديد… لكن أثبت نفسه بسرعة. يلعب Esport بمستوى عالي، يدمج بين الون شوت والتكتيك بطريقة نادرة. قراراته في الفايت ذكية، وتحركاته سريعة ودقيقة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاستراتيجيات -->
+    <section id="strategies" class="section">
+        <div class="container">
+            <h2 class="section-title">استراتيجياتنا القتالية</h2>
+            <div class="strategies-grid">
+                <!-- استراتيجية الدفاع -->
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3>الدفاع المتقدم</h3>
+                        <span class="member-role">بقيادة Zodiac</span>
+                    </div>
+                    <p>تشكيلة 1-3-1 المتقدمة للسيطرة على ساحة المعركة</p>
+                    <div class="strategy-weapons">
+                        <span class="weapon-tag">XM8</span>
+                        <span class="weapon-tag">M1887</span>
+                        <span class="weapon-tag">القنابل الدخانية</span>
+                    </div>
+                    <ul>
+                        <li>Zodiac يتحكم في نقاط المراقبة الاستراتيجية</li>
+                        <li>Winter يوفر الغطاء الناري والدعم</li>
+                        <li>Matrix يقود الهجوم المضاد عند الفرصة</li>
+                        <li>تناوب المواقع كل 60 ثانية</li>
+                        <li>استخدام التضاريس للتغطية والمراقبة</li>
+                    </ul>
+                </div>
+
+                <!-- استراتيجية الهجوم -->
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3>الهجوم السريع</h3>
+                        <span class="member-role">بقيادة Zirda</span>
+                    </div>
+                    <p>تشكيلة 4-1 للاختراق السريع والمركّز</p>
+                    <div class="strategy-weapons">
+                        <span class="weapon-tag">MP40</span>
+                        <span class="weapon-tag">M1014</span>
+                        <span class="weapon-tag">AWM</span>
+                    </div>
+                    <ul>
+                        <li>تقدم على محورين متوازيين</li>
+                        <li>استخدام القنابل الدخانية والحرارية</li>
+                        <li>اختراق نقطة واحدة بقوة مركزة</li>
+                        <li>تبادل الأدوار حسب تطور المعركة</li>
+                        <li>تغطية القناص للفريق أثناء التقدم</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم قوانين الكلان -->
+    <section id="rules" class="section">
+        <div class="container">
+            <h2 class="section-title">قوانين الكلان</h2>
+            <div class="rules-section">
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <h4>📋 قوانين عامة</h4>
+                        <ul>
+                            <li>الالتزام بالانضباط والاحترام المتبادل</li>
+                            <li>السب والشتم ممنوع منعاً باتاً</li>
+                            <li>الحضور المنتظم للتدريبات والبطولات</li>
+                            <li>الالتزام بتعليمات القادة والزعماء</li>
+                            <li>الحفاظ على سمعة الكلان داخل اللعبة وخارجها</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-item">
+                        <h4>🎮 قوانين اللعب</h4>
+                        <ul>
+                            <li>الالتزام باستراتيجيات الفريق المحددة</li>
+                            <li>عدم التهور واللعب الفردي</li>
+                            <li>التواصل المستمر مع الفريق أثناء اللعب</li>
+                            <li>احترام أوقات التدريب واللعب الجماعي</li>
+                            <li>الالتزام بأخلاقيات اللعب النظيف</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-item">
+                        <h4>⚡ قوانين الانضباط</h4>
+                        <ul>
+                            <li>الغياب المتكرر دون عذر يؤدي إلى الإنذار</li>
+                            <li>التصرفات غير اللائقة تؤدي إلى العقاب</li>
+                            <li>عدم الالتزام بالقوانين يؤدي إلى الفصل</li>
+                            <li>الالتزام بمواعيد الاجتماعات والتدريبات</li>
+                            <li>الحفاظ على السرية التكتيكية للكلان</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإنجازات -->
+    <section id="achievements" class="section achievements">
+        <div class="container">
+            <h2 class="section-title">إنجازاتنا</h2>
+            <div class="achievement-stats">
+                <div class="achievement-item">
+                    <h3>سجل لا يقهر</h3>
+                    <p>لم نخسر أي روم أو بطولة</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>Top 54</h3>
+                    <p>الترتيب الحالي على تونس</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>30+ عضو</h3>
+                    <p>نخبة المحاربين</p>
+                </div>
+                <div class="achievement-item">
+                    <h3>100% Win Rate</h3>
+                    <p>معدل انتصارات كامل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الانضمام -->
+    <section id="join" class="section join-section">
+        <div class="container">
+            <h2 class="section-title">انضم إلى الأسطورة</h2>
+            
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <h3>الرنك المطلوب</h3>
+                    <span class="req-value">Heroic Tiger</span>
+                    <p>كحد أدنى</p>
+                </div>
+                <div class="requirement-item">
+                    <h3>معدل K/D</h3>
+                    <span class="req-value">3.5+</span>
+                    <p>نسبة القتل إلى الموت</p>
+                </div>
+                <div class="requirement-item">
+                    <h3>معدل الانتصارات</h3>
+                    <span class="req-value">60%+</span>
+                    <p>نسبة الفوز في المباريات</p>
+                </div>
+            </div>
+
+            <!-- نموذج التقديم -->
+            <div class="application-form">
+                <h3 style="text-align: center; margin-bottom: 3rem; color: var(--purple); font-size: 2rem;">تقديم طلب الانضمام</h3>
+                <form id="joinForm">
+                    <div class="form-group">
+                        <label for="playerName">اسم اللاعب في Free Fire</label>
+                        <input type="text" id="playerName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="playerId">معرف اللاعب (ID)</label>
+                        <input type="text" id="playerId" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="currentRank">الرنك الحالي</label>
+                        <select id="currentRank" class="form-control" required>
+                            <option value="">اختر الرنك</option>
+                            <option value="Heroic Tiger">Heroic Tiger</option>
+                            <option value="Grandmaster">Grandmaster</option>
+                            <option value="Master">Master</option>
+                            <option value="Diamond">Diamond</option>
+                            <option value="Platinum">Platinum</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kdRatio">معدل K/D</label>
+                        <input type="number" id="kdRatio" class="form-control" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="winRate">معدل الفوز (%)</label>
+                        <input type="number" id="winRate" class="form-control" min="0" max="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="playStyle">أسلوب اللعب المفضل</label>
+                        <select id="playStyle" class="form-control" required>
+                            <option value="">اختر أسلوب اللعب</option>
+                            <option value="rusher">مهاجم (Rusher)</option>
+                            <option value="sniper">قناص (Sniper)</option>
+                            <option value="supporter">داعم (Supporter)</option>
+                            <option value="defender">مدافع (Defender)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">الخبرة في البطولات</label>
+                        <textarea id="experience" class="form-control" rows="3" placeholder="اذكر خبرتك السابقة في البطولات أو المنافسات..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whyJoin">لماذا تريد الانضمام إلى The R9؟</label>
+                        <textarea id="whyJoin" class="form-control" rows="3" required placeholder="أخبرنا لماذا تعتقد أنك مناسب للانضمام إلى كلاننا..."></textarea>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <button type="submit" class="btn-join">تقديم الطلب</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="logo-text">THE R9</div>
+            <p>أبطال تونس غير المهزومين - Top 54</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-gamepad"></i></a>
+            </div>
+            
+            <p>جميع الحقوق محفوظة &copy; 2024 The R9 Clan</p>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // شاشة التحميل
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1500);
+        });
+
+        // شريط التقدم
+        window.addEventListener('scroll', function() {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const winScroll = window.pageYOffset;
+            const scrollPercent = (winScroll / (docHeight - winHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // تأثير الهيدر عند التمرير
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // زر العودة للأعلى
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .mobile-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // إغلاق قائمة الجوال بعد النقر على رابط
+                document.querySelector('.mobile-menu').classList.remove('active');
+            });
+        });
+
+        // إدارة قائمة الجوال
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Animate stats counter
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = stat.textContent;
+                if (target.includes('+')) {
+                    stat.textContent = '0+';
+                    let current = 0;
+                    const targetNum = parseInt(target);
+                    const increment = targetNum / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= targetNum) {
+                            stat.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current) + '+';
+                        }
+                    }, 40);
+                } else if (target === '100%') {
+                    stat.textContent = '0%';
+                    let current = 0;
+                    const timer = setInterval(() => {
+                        current += 2;
+                        if (current >= 100) {
+                            stat.textContent = '100%';
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = current + '%';
+                        }
+                    }, 30);
+                }
+            });
+        }
+
+        // Trigger animation when hero section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.hero'));
+
+        // Form submission
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم تقديم طلبك بنجاح! سوف نتصل بك قريباً.');
+            this.reset();
+        });
+
+        // Add floating particles effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const hero = document.querySelector('.hero');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 8 + 3 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'var(--purple)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.opacity = Math.random() * 0.7 + 0.3;
+                particle.style.boxShadow = `0 0 ${Math.random() * 20 + 10}px var(--purple)`;
+                particle.style.zIndex = '1';
+                hero.appendChild(particle);
+                
+                // Animate particles
+                animateParticle(particle);
+            }
+        });
+
+        function animateParticle(particle) {
+            let x = parseFloat(particle.style.left);
+            let y = parseFloat(particle.style.top);
+            let xSpeed = (Math.random() - 0.5) * 0.2;
+            let ySpeed = (Math.random() - 0.5) * 0.2;
+            
+            function move() {
+                x += xSpeed;
+                y += ySpeed;
+                
+                if (x < 0 || x > 100) xSpeed *= -1;
+                if (y < 0 || y > 100) ySpeed *= -1;
+                
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+
+        // تأثيرات الظهور عند التمرير
+        const scrollElements = document.querySelectorAll('.team-member, .philosophy-item, .elite-member, .strategy-card, .achievement-item, .requirement-item, .rule-item');
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('animate__animated', 'animate__fadeInUp');
+        };
+
+        const hideScrollElement = (element) => {
+            element.classList.remove('animate__animated', 'animate__fadeInUp');
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.2)) {
+                    displayScrollElement(el);
+                } else {
+                    hideScrollElement(el);
+                }
+            })
+        }
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+
+        // تهيئة الرسوم المتحركة عند التحميل
+        handleScrollAnimation();
+    </script>
+</body>
+</html>
